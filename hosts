@@ -1,0 +1,14 @@
+localhost
+#s824-6013-vios2.iic
+#s824-6013-vios1.iic
+s922-vios1.iic
+s922-vios2.iic
+
+[ctrl]
+localhost
+
+[viosy]
+s922-vios1.iic
+s922-vios2.iic
+#s824-6013-vios2.iic
+#s824-6013-vios1.iic

@@ -1,0 +1,14 @@
+---
+# Przykładowy playbook zbierający informacje o VIOS
+
+- hosts: viosy    # Za wykonanie modułów ibm.storage_virtualize odpowiada stacja kontrolna
+  remote_user: ansible
+  gather_facts: True 
+
+  tasks:
+    - name: Odpytywanie VIOSa o mapowania
+      ibm.power_vios.mapping_facts:
+      
+    - name: Wyświetlenie informacji o mapowaniach
+      debug:
+        var:  ansible_facts.mappings

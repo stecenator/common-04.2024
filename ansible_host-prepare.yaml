@@ -1,0 +1,27 @@
+---
+# Przykładowy playbook zbierający informacje o macierzy IBM FS
+
+- hosts: ender.iic    # Stacja kontrolna Ansible do szkolenia
+  gather_facts: True
+  remote_user: root
+
+  tasks:
+    - name: "Zakładanie użyszkodników szkoleniowych"
+      user:
+        name: "{{ item }}"
+        generate_ssh_key: True
+        ssh_key_type: ecdsa
+        password: "{{ common_user_pass | password_hash('sha512') }}"   # clear text password z @group_vars/secrets.enc
+        update_password: "on_create"
+      with_items: "{{ common_users }}"
+      tags:
+        - "USERS"
+    
+    - name: Ulubione paczki na nowszych OSach
+      dnf:
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ pkgs }}"
+      when: ansible_facts['pkg_mgr'] == 'dnf'
+      tags:
+        - "PKGS"

@@ -1,0 +1,62 @@
+---
+
+# Zmienne dla hosta ender.iic do przygotowania go do roli stacji kontrolnej Ansible
+
+common_users:
+    - common01
+    - common02
+    - common03
+    - common04
+    - common05
+    - common06
+    - common07
+    - common08
+    - common09
+    - common10
+    - common11
+    - common12
+    - common13
+    - common14
+    - common15
+    - common16
+    - common17
+    - common18
+    - common19
+    - common20
+    - common21
+    - common22
+    - common23
+    - common24
+    - common25
+    - common26
+    - common27
+    - common28
+    - common29
+    - common30
+    - marcinek
+
+pkgs:
+  - zsh
+  - zsh-syntax-highlighting
+  - mc
+  - git
+  - nmon
+  - bind-utils
+  - tmux
+  - powerline
+  - vim-powerline
+  - tmux-powerline
+  - powerline-fonts
+  - wget
+  - curl
+  - ruby
+  - ruby-devel 
+  - util-linux-user
+  - redhat-rpm-config 
+  - gcc
+  - gcc-c++ 
+  - make
+  - ansible
+  - ansible-core
+  - python3-passlib
+  - gh

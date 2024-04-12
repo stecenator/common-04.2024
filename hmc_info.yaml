@@ -1,0 +1,18 @@
+---
+# Przykładowy playbook zbierający informacje o Power HMC
+
+- hosts: localhost    # Za wykonanie modułów ibm.storage_virtualize odpowiada stacja kontrolna
+  gather_facts: false # bo nie obchodzi mnie co wiem o localhost
+
+  tasks:
+    - name: Odpytywanie HMC
+      register: build_info
+      ibm.power_hmc.hmc_update_upgrade:
+          state: facts
+          hmc_host: '{{ hmc }}'
+          hmc_auth:
+              username: '{{ hmc_user }}'
+              password: '{{ hmc_pass }}'
+    - name: Wyświetlenie informacji o macierzy
+      debug:
+        var: build_info

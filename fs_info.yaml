@@ -1,0 +1,24 @@
+---
+# Przykładowy playbook zbierający informacje o macierzy IBM FS
+
+- hosts: localhost    # Za wykonanie modułów ibm.storage_virtualize odpowiada stacja kontrolna
+  gather_facts: false # bo nie obchodzi mnie co wiem o localhost
+
+  tasks:
+    - name: "Uwierzytelnienie na jako {{ fs_username }} na {{ fs_cluster }}"
+      register: auth_info   # auth_info.token pozwala potem nie użwać user i hasła
+      ibm.storage_virtualize.ibm_svc_auth:
+        clustername: "{{ fs_cluster }}"
+        log_path: "{{ fs_log }}"
+        username: "{{ fs_user }}"
+        password: "{{ fs_pass }}"
+    - name: Zbieranie informacji o macierzy
+      register: svc_inf
+      ibm.storage_virtualize.ibm_svc_info:
+        clustername: "{{ fs_cluster }}"
+        log_path: "{{ fs_log }}"
+        token: "{{ auth_info.token }}"
+        gather_subset: system     # Bo domyślne `all` to trochę za dużo
+    - name: Wyświetlenie informacji o macierzy
+      debug:
+        var: svc_inf
