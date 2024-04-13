@@ -1,9 +1,4 @@
 ---
-fs_cluster: "v5ke.iic"
+fs_cluster: "fs5200-2.iic"
 fs_log: "/tmp/fs.log"
-hmc_user: marcinek
 hmc: hmc10.iic
-
-# Te zmienne są w vars/secrets.enc
-# fs_user:
-# fs_pass:
