@@ -13,6 +13,6 @@
           hmc_auth:
               username: '{{ hmc_user }}'
               password: '{{ hmc_pass }}'
-    - name: Wyświetlenie informacji o macierzy
+    - name: Wyświetlenie konsoli
       debug:
         var: build_info
