@@ -8,7 +8,9 @@
   tasks:
     - name: Odpytywanie VIOSa o mapowania
       ibm.power_vios.mapping_facts:
-        types: file_opt      # Żeby był mniejszy output
+        component: vscsi
+        types: 
+          - file_opt      # Żeby był mniejszy output
       
     - name: Wyświetlenie informacji o mapowaniach
       debug:
