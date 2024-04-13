@@ -60,3 +60,4 @@ pkgs:
   - ansible-core
   - python3-passlib
   - gh
+  - sshpass
