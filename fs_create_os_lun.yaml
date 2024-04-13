@@ -12,6 +12,8 @@
         log_path: "{{ fs_log }}"
         username: "{{ fs_user }}"
         password: "{{ fs_pass }}"
+      tags:
+        - always      # Uwierzytelnić zawsze się trzeba
     
     - name: Tworzenie LUNu pod OSa
       ibm.storage_virtualize.ibm_svc_manage_volume:
