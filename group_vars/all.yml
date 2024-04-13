@@ -6,6 +6,9 @@ my_lpar_name: "common00"    # Hostname i nazwa LPARu. Zamień 00 na numer Twojeg
 fs_cluster: "fs5200-2.iic"
 fs_log: "/tmp/fs.log"
 my_vdisk: "{{ my_lpar_name }}_os"   # common00_os
+my_vdisk_size: 64           # 64 czego określa marametr unit. Zakładamy że GiB
+vios_cluster: "S824-6013"   # hoscluster VIOSów zdefiniowany na macierzy
+fs_pool: "Pool_SiteA"       # mdiskgrupa
 
 # Flałer-paler
 hmc: "hmc10.iic"
