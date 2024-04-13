@@ -25,3 +25,16 @@
         unit: "gb"
         iogrp: "io_grp0"
         novolumegroup: True
+      tags:
+        - "MKVDISK"
+      
+    - name: Mapowanie LUNu na klaster VIOSów
+      ibm.storage_virtualize.ibm_svc_vol_map:
+        clustername: "{{ fs_cluster }}"
+        log_path: "{{ fs_log }}"
+        token: "{{ auth_info.token }}"
+        volname: "{{ my_vdisk }}"
+        state: "present"
+        hostcluster: "{{ vios_cluster }}"
+      tags:
+        - "VDISKMAP"
