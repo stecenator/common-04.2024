@@ -18,7 +18,7 @@
         clustername: "{{ fs_cluster }}"
         log_path: "{{ fs_log }}"
         token: "{{ auth_info.token }}"
-        name: "{{ my_volume}}"
+        name: "{{ my_vdisk }}"
         state: "present"
         pool: "{{ fs_pool }}"
         size: "{{ my_vdisk_size }}"

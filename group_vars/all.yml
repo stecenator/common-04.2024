@@ -1,6 +1,6 @@
 ---
 # Sprawy ogólne
-my_lpar_name: "common00"    # Hostname i nazwa LPARu. Zamień 00 na numer Twojego użytkownika
+my_lpar_name: "common_master"    # Hostname i nazwa LPARu. Zamień 00 na numer Twojego użytkownika
 
 # Sprawy storydżowe
 fs_cluster: "fs5200-2.iic"
