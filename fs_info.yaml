@@ -5,7 +5,7 @@
   gather_facts: false # bo nie obchodzi mnie co wiem o localhost
 
   tasks:
-    - name: "Uwierzytelnienie na jako {{ fs_username }} na {{ fs_cluster }}"
+    - name: "Uwierzytelnienie na jako {{ fs_user }} na {{ fs_cluster }}"
       register: auth_info   # auth_info.token pozwala potem nie użwać user i hasła
       ibm.storage_virtualize.ibm_svc_auth:
         clustername: "{{ fs_cluster }}"
