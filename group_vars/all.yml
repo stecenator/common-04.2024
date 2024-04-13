@@ -1,4 +1,11 @@
 ---
+# Sprawy ogólne
+my_lpar_name: "common00"    # Hostname i nazwa LPARu. Zamień 00 na numer Twojego użytkownika
+
+# Sprawy storydżowe
 fs_cluster: "fs5200-2.iic"
 fs_log: "/tmp/fs.log"
-hmc: hmc10.iic
+my_vdisk: "{{ my_lpar_name }}_os"   # common00_os
+
+# Flałer-paler
+hmc: "hmc10.iic"
