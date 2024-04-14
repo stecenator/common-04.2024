@@ -1,6 +1,8 @@
 ---
 # Sprawy ogólne
 my_lpar_name: "common_master"    # Hostname i nazwa LPARu. Zamień 00 na numer Twojego użytkownika
+my_hdisk: "hdisk4"               # Nazwa mojego LUNu tak jak go widzą VIOSy. Uwaga, w rożnych viosach mogą być różne nazwy!
+my_power: "S824-6013"            # system_name zarządzanego przez HMC pudła
 
 # Sprawy storydżowe
 fs_cluster: "fs5200-2.iic"

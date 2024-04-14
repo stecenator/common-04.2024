@@ -16,3 +16,16 @@
     - name: Wyświetlenie konsoli
       debug:
         var: build_info
+    
+    - name: Informacje o zarządzanym pudle
+      register: sys_info
+      ibm.power_hmc.power_system:
+          hmc_host: '{{ hmc }}'
+          hmc_auth:
+              username: '{{ hmc_user }}'
+              password: '{{ hmc_pass }}'
+          state: facts
+          system_name: "{{ my_power }}"
+    - name: Wyświetlenie informacji o pudle
+      debug:
+        var: sys_info
