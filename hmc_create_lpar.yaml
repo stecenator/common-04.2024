@@ -11,6 +11,7 @@
         hmc_auth:
           username: '{{ hmc_user }}'
           password: '{{ hmc_pass }}'
+        system_name: "{{ my_power }}"
         vm_name: "{{ my_lpar_name }}"
         min_proc_unit: 0.2
         proc_unit: 0.2
