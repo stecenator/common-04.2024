@@ -1,0 +1,27 @@
+---
+# Przykładowy playbook zbierający informacje o Power HMC
+
+- hosts: localhost    # Za wykonanie modułów ibm.storage_virtualize odpowiada stacja kontrolna
+  gather_facts: false # bo nie obchodzi mnie co wiem o localhost
+
+  tasks:
+    - name: Tworzenie LPARu
+      ibm.power_hmc.powervm_lpar_instance:
+        hmc_host: '{{ hmc }}'
+        hmc_auth:
+          username: '{{ hmc_user }}'
+          password: '{{ hmc_pass }}'
+        vmname: "{{ my_lpar_name }}"
+        min_proc_unit: 0.2
+        proc_unit: 0.2
+        max_proc_unit: 1.0
+        os_type: "aix_linux"
+        prof_name: "common-lnx"
+        volume_config:
+          - vios_name: "vios1"    # jak to widać na HMC, a nie hostname viosa
+            volume_name: "{{ my_hdisk }}"
+          - vios_name: "vios2"
+            volume_name: "{{ my_hdisk }}"
+        virt_network_config:
+          network_name: "VLAN1-ETHERNET0"
+        state: present    
