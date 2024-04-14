@@ -15,7 +15,7 @@
       tags:
         - always      # Uwierzytelnić zawsze się trzeba
     
-    - name: Tworzenie LUNu pod OSa
+    - name: Tworzenie sklonowanego LUNu pod OSa - źródłem jest LUN common_master_os
       ibm.storage_virtualize.ibm_svc_manage_volume:
         clustername: "{{ fs_cluster }}"
         log_path: "{{ fs_log }}"
@@ -23,8 +23,9 @@
         name: "{{ my_vdisk }}"
         state: "present"
         pool: "{{ fs_pool }}"
-        size: "{{ my_vdisk_size }}"
-        unit: "gb"
+      #  size: "{{ my_vdisk_size }}"    # to jest do stawiania LUNu od 0
+      #  unit: "gb"
+        fromsourcevolume: "{{ src_vdisk }}"
         iogrp: "io_grp0"
         novolumegroup: True
       tags:

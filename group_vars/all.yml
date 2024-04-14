@@ -8,6 +8,7 @@ my_power: "S824-6013"            # system_name zarządzanego przez HMC pudła
 fs_cluster: "fs5200-2.iic"
 fs_log: "/tmp/fs.log"
 my_vdisk: "{{ my_lpar_name }}_os"   # common00_os
+src_vdisk: "common_master_os"   # Wcześniej przygotowany obraz Fedory wyciągany przez Adama Słodowego spod biurka
 my_vdisk_size: 64           # 64 czego określa marametr unit. Zakładamy że GiB
 vios_cluster: "S824-6013"   # hoscluster VIOSów zdefiniowany na macierzy
 fs_pool: "Pool_SiteA"       # mdiskgrupa
