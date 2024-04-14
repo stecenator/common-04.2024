@@ -25,6 +25,7 @@
         pool: "{{ fs_pool }}"
       #  size: "{{ my_vdisk_size }}"    # to jest do stawiania LUNu od 0
       #  unit: "gb"
+        type: "thinclone"
         fromsourcevolume: "{{ src_vdisk }}"
         iogrp: "io_grp0"
         novolumegroup: True
