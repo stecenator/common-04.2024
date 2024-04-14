@@ -16,6 +16,7 @@
         min_proc_unit: 0.2
         proc_unit: 0.2
         max_proc_unit: 1.0
+        proc: 2         # Liczba procesorów wirtualnych, bo jest ustawione proc_unit.
         os_type: "aix_linux"
         prof_name: "common-lnx"
         volume_config:
