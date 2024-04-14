@@ -19,8 +19,8 @@
         proc: 2         # Liczba procesorów wirtualnych, bo jest ustawione proc_unit.
         os_type: "aix_linux"
         volume_config:
-          - vios_name: "vios1"    # jak to widać na HMC, a nie hostname viosa
-            volume_name: "{{ my_hdisk }}"
+          # - vios_name: "vios1"    # jak to widać na HMC, a nie hostname viosa
+          #   volume_name: "{{ my_hdisk }}"
           - vios_name: "vios2"
             volume_name: "{{ my_hdisk }}"
         virt_network_config:
