@@ -1,0 +1,1 @@
+# Readme do projektu Common 20204
