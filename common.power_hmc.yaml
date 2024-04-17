@@ -2,7 +2,7 @@
 
 plugin: ibm.power_hmc.powervm_inventory
 hmc_hosts:
-  - hmc: "{{ hmc }}"
+  - hmc: "hmc10.iic"
     user: "{{ hmc_user }}"
     password: "{{ hmc_pass }}"
   
