@@ -1,9 +1,8 @@
----
 # Konfiguracja pluginu do dynamicznego inventory na podstawie danych z HMC
 
-  plugin: ibm.power_hmc.powervm_inventory
-  hmc_hosts:
-    - hmc: "{{ hmc }}"
-      user: "{{ hmc_user }}"
-      password: "{{ hmc_pass }}"
+plugin: ibm.power_hmc.powervm_inventory
+hmc_hosts:
+  - hmc: "{{ hmc }}"
+    user: "{{ hmc_user }}"
+    password: "{{ hmc_pass }}"
   
