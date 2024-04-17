@@ -1,0 +1,15 @@
+---
+# Usuwanie użyszkodników po Commonie
+
+- hosts: ctrl    # Grupa hostów kontrolnych do Ansibla (ender i peanut)
+  gather_facts: True
+  remote_user: root
+
+  tasks:
+    - name: "Zakładanie użyszkodników szkoleniowych"
+      user:
+        name: "{{ item }}"
+        state: absent
+      with_items: "{{ common_users }}"
+      tags:
+        - "RMUSERS"
