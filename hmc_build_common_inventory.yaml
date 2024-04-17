@@ -1,0 +1,12 @@
+---
+# Przykładowy playbook bufujący inventory HMC na podstawie pluginu ibm.power_hmc.powervm_inventory
+
+- hosts: localhost    # bo ibm.power_hmc wykonuje się lokalnie
+  gather_facts: false # bo nie obchodzi mnie co wiem o localhost
+
+  plugin: ibm.power_hmc.powervm_inventory
+  hmc_hosts:
+    - hmc: "{{ hmc }}"
+      user: "{{ hmc_user }}"
+      password: "{{ hmc_pass }}"
+  
