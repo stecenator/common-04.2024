@@ -5,4 +5,6 @@ hmc_hosts:
   - hmc: "hmc10.iic"
     user: "{{ hmc_user }}"
     password: "{{ hmc_pass }}"
+    user: "common"
+    password: "C0mm0n@Gdyn1@"
   
