@@ -10,6 +10,7 @@
       user:
         name: "{{ item }}"
         state: absent
+        remove: true
       with_items: "{{ common_users }}"
       tags:
         - "RMUSERS"

@@ -1,0 +1,70 @@
+---
+# Czyszczenie po commonie
+# Zatrzymanie LPARa {{ common_lpar_list}} - pownienem to zrobić jkoś z inventory, może kiedyś
+# Usunięcie LPARa (zdejmuje takżę mapowania na VIOSach)
+# Usunięcie mapowania na FSie
+# Usunięcie LUNu
+
+- hosts: localhost    # Za wykonanie modułów ibm.storage_virtualize i ibm.power_hmc
+  gather_facts: false # bo nie obchodzi mnie co wiem o localhost
+
+  tasks:
+    - name: Usuwanie LPARów z listy
+      ibm.power_hmc.powervm_lpar_instance:
+        hmc_host: '{{ hmc }}'
+        hmc_auth:
+          username: '{{ hmc_user }}'
+          password: '{{ hmc_pass }}'
+        system_name: "{{ my_power }}"
+        vm_name: "{{ my_lpar_name }}"
+        min_proc_unit: 0.2
+        proc_unit: 0.2
+        max_proc_unit: 1.0
+        proc: 2         # Liczba procesorów wirtualnych, bo jest ustawione proc_unit.
+        os_type: "aix_linux"
+        volume_config:
+          # - vios_name: "vios1"    # jak to widać na HMC, a nie hostname viosa
+          #   volume_name: "{{ my_hdisk }}"
+          - vios_name: "vios2"
+            volume_name: "{{ my_hdisk }}"
+        virt_network_config:
+          - network_name: "VLAN74-ETHERNET0"
+        state: present
+
+    - name: "Uwierzytelnienie na jako {{ fs_user }} na {{ fs_cluster }}"
+      register: auth_info   # auth_info.token pozwala potem nie użwać user i hasła
+      ibm.storage_virtualize.ibm_svc_auth:
+        clustername: "{{ fs_cluster }}"
+        log_path: "{{ fs_log }}"
+        username: "{{ fs_user }}"
+        password: "{{ fs_pass }}"
+      tags:
+        - always      # Uwierzytelnić zawsze się trzeba
+    
+    - name: Tworzenie sklonowanego LUNu pod OSa - źródłem jest LUN common_master_os
+      ibm.storage_virtualize.ibm_svc_manage_volume:
+        clustername: "{{ fs_cluster }}"
+        log_path: "{{ fs_log }}"
+        token: "{{ auth_info.token }}"
+        name: "{{ my_vdisk }}"
+        state: "present"
+        pool: "{{ fs_pool }}"
+      #  size: "{{ my_vdisk_size }}"    # to jest do stawiania LUNu od 0
+      #  unit: "gb"
+        type: "thinclone"
+        fromsourcevolume: "{{ src_vdisk }}"
+        iogrp: "io_grp0"
+        novolumegroup: True
+      tags:
+        - "MKVDISK"
+      
+    - name: Mapowanie LUNu na klaster VIOSów
+      ibm.storage_virtualize.ibm_svc_vol_map:
+        clustername: "{{ fs_cluster }}"
+        log_path: "{{ fs_log }}"
+        token: "{{ auth_info.token }}"
+        volname: "{{ my_vdisk }}"
+        state: "present"
+        hostcluster: "{{ vios_cluster }}"
+      tags:
+        - "VDISKMAP"
