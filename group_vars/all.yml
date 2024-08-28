@@ -15,3 +15,6 @@ fs_pool: "Pool_SiteA"       # mdiskgrupa
 
 # Flałer-paler
 hmc: "hmc10.iic"
+
+common_lpars:
+  - common01
